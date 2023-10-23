@@ -5,12 +5,17 @@ import { Request } from 'express';
 export class ProfileController {
     @Post("/post")
     postProfile(): string {
-        return "Testando POST";
+        return "Postou o perfil";
     }
 
-    @Get("/get")
+    @Get("/getAll")
+    getAll(): string {
+        return "Visualizando todos os perfis";
+    }
+
+    @Get()
     getProfile(): string {
-        return "Testando GET";
+        return "Aqui é o perfil";
     }
 
 }
