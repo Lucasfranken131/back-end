@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id_user       Int       @default(autoincrement()) @id
+  email         String    @unique   @db.VarChar(70)
+  username      String    @unique   @db.VarChar(20) 
+  books         Book[]     
+}
+
+model Book {
+  id_book       Int       @default(autoincrement()) @id
+  user_booking  User[]    
+}
+
+enum Status {
+  Disponivel
+  Ausente
+  Ocupado
+  Lendo
+}
