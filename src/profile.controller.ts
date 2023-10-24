@@ -10,7 +10,7 @@ export class ProfileController {
 
     @Get("/getAll")
     getAll(): string {
-        return "Visualizando todos os perfis";
+        return "Visualizando todos os perfis 😜";
     }
 
     @Get()
