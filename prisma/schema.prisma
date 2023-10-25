@@ -12,13 +12,18 @@ datasource db {
 
 model User {
   id_user       Int       @default(autoincrement()) @id
+  profile_picture String
+  first_name    String    @db.VarChar(20)
+  last_name     String    @db.VarChar(30)
+  username      String    @unique   @db.VarChar(20)
   email         String    @unique   @db.VarChar(70)
-  username      String    @unique   @db.VarChar(20) 
+  password      String    @db.VarChar(25)
   books         Book[]     
 }
 
 model Book {
   id_book       Int       @default(autoincrement()) @id
+  book_picture  String
   user_booking  User[]    
 }
 
