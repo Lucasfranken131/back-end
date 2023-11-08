@@ -24,6 +24,10 @@ model User {
 model Book {
   id_book       Int       @default(autoincrement()) @id
   book_picture  String
+  book_name     String
+  book_author   String
+  book_date     DateTime
+  book_publisher  String
   user_booking  User[]    
 }
 
