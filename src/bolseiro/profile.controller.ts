@@ -6,8 +6,19 @@ import { ProfileService } from './profile.service';
 @Controller('profile')
 export class ProfileController {
     constructor(private readonly profileService: ProfileService) {}
+
+    @Get()
+    getUsers(@Query ("name") name: string) {
+        return this.profileService.getUsers(name);
+    }
+
+    @Get(":id")
+    getUser(@Param('id') id: string) {
+        return this.profileService.getUser(+id);
+    }
+
     @Post()
-    postProfile(@Body() createProfileDto: CreateProfileDto) {
+    postUser(@Body() createProfileDto: CreateProfileDto) {
         return {
             profilePicture: createProfileDto.profilePicture,
             username: createProfileDto.username,
@@ -16,23 +27,8 @@ export class ProfileController {
         }
     }
 
-    @Get("/getAll")
-    getAll(): string {
-        return "Visualizando todos os perfis 😜😎";
-    }
-
-    @Get()
-    getUsers(@Query ("name") name: string) {
-        return this.profileService.getUsers(name);
-    }
-
-    @Get(":id")
-    getProfile(@Param('id') id: string) {
-        return this.profileService.getUser(+id);
-    }
-
     @Put(":id")
-    putProfile(@Param("id") id: string , @Body() updateProfileDto: UpdateProfileDto) {
+    putUser(@Param("id") id: string , @Body() updateProfileDto: UpdateProfileDto) {
         return {
             id,
             profilePicture: UpdateProfileDto,
