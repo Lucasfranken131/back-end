@@ -26,7 +26,7 @@ model Book {
   book_picture  String
   book_name     String
   book_author   String
-  book_date     DateTime
+  book_date     String
   book_publisher  String
   user_booking  User[]    
 }

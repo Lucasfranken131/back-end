@@ -9,22 +9,22 @@ export class BookController {
 
     @Get()
     getUsers(@Query ("name") name: string) {
-        return this.bookService.getBooks(name);
+        return this.bookService.getAllBooks();
     }
 
     @Get(":id")
-    getBook(@Param("ids") id: string) {
+    getBook(@Param("id") id: string) {
         return this.bookService.getBook(+id);
     }
 
     @Post()
-    createBook(@Body() createBookDto: CreateBookDto) {
-        return this.bookService.createBook(createBookDto);
+    createBook(@Body() data: CreateBookDto) {
+        return this.bookService.createBook(data);
     }
 
     @Put(":id")
-    putBook(@Param("id") id: string, updateBookDto: UpdateBookDto) {
-        return this.bookService.updateBook(+id, updateBookDto);
+    putBook(@Param("id") id: string, @Body() data: UpdateBookDto) {
+        return this.bookService.updateBook(+id, data);
     }
 
     @Delete(":id")
