@@ -1,4 +1,6 @@
 import { Injectable } from "@nestjs/common";
+import { CreateProfileDto } from "./dto/create-profile.dto";
+import { UpdateProfileDto } from "./dto/update-profile.dto";
 
 @Injectable()
 export class ProfileService {
@@ -20,5 +22,35 @@ export class ProfileService {
             throw new Error("Usuário não foi achado.");
         }
         return user;
+    }
+
+    createUser(createProfileDto: CreateProfileDto) {
+        const newProfile = {
+            ...createProfileDto,
+            id_user: Date.now(),
+        };
+        this.users.push(newProfile);
+
+        return newProfile;
+    }
+
+    updateUser(id: number, updateProfileDto: UpdateProfileDto) {
+        this.users = this.users.map((user) => {
+            if(user.id_user === id) {
+                return {...user, ...updateProfileDto};
+            }
+
+            return user;
+        });
+
+        return this.getUser(id);
+    }
+
+    deleteUser(id: number) {
+        const toBeRemoved = this.getUser(id);
+
+        this.users = this.users.filter((user) => user.id_user !== id);
+
+        return toBeRemoved;
     }
 }
