@@ -9,7 +9,7 @@ export class ProfileController {
 
     @Get()
     getUsers(@Query ("name") name: string) {
-        return this.profileService.getUsers(name);
+        return this.profileService.getAllUsers(name);
     }
 
     @Get(":id")
@@ -18,13 +18,13 @@ export class ProfileController {
     }
 
     @Post()
-    postUser(@Body() createProfileDto: CreateProfileDto) {
-        return this.profileService.createUser(createProfileDto);
+    postUser(@Body() data: CreateProfileDto) {
+        return this.profileService.createUser(data);
     }
 
     @Put(":id")
-    putUser(@Param("id") id: string , @Body() updateProfileDto: UpdateProfileDto) {
-        return this.profileService.updateUser(+id, updateProfileDto);
+    putUser(@Param("id") id: string , @Body() data: UpdateProfileDto) {
+        return this.profileService.updateUser(+id, data);
     }
 
     @Delete(":id")
