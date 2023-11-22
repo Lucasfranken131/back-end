@@ -9,7 +9,19 @@ export class BookService {
     constructor(private prisma: PrismaService) {}
 
     async getAllBooks() {
-        return this.prisma.book.findMany();
+        return await this.prisma.book.findMany();
+    }
+
+    async getBookName(name: string) {
+        const book = await this.prisma.book.findFirst({
+            where: {
+                book_name: name,
+            },
+        })
+
+        if(!book) {
+            throw new Error("");
+        }
     }
 
     async getBooks(name: string) {
