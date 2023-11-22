@@ -7,27 +7,32 @@ import { ProfileService } from './profile.service';
 export class ProfileController {
     constructor(private readonly profileService: ProfileService) {}
 
-    @Get()
+    @Get(":name")
     getUsers(@Query ("name") name: string) {
-        return this.profileService.getAllUsers(name);
+        return this.profileService.getUsername(name);
     }
 
-    @Get(":id")
+    @Get("/findAll")
+    getAllUsers() {
+        return this.profileService.getAllUsers();
+    }
+
+    @Get("/findUser:id")
     getUser(@Param('id') id: string) {
         return this.profileService.getUser(+id);
     }
 
-    @Post()
+    @Post("/createUser")
     postUser(@Body() data: CreateProfileDto) {
         return this.profileService.createUser(data);
     }
 
-    @Put(":id")
+    @Put("/updateUser:id")
     putUser(@Param("id") id: string , @Body() data: UpdateProfileDto) {
         return this.profileService.updateUser(+id, data);
     }
 
-    @Delete(":id")
+    @Delete("/deleteUser:id")
     deleteUser(@Param("id") id: string) {
         return this.profileService.deleteUser(+id);
     }

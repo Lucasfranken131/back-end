@@ -8,8 +8,22 @@ export class ProfileService {
 
     constructor(private prisma: PrismaService) {}
 
-    async getAllUsers(name?: string) {
+    async getAllUsers() {
         return await this.prisma.user.findMany();
+    }
+
+    async getUsername(name: string) {
+        const user = await this.prisma.user.findFirst({
+            where: {
+                username: name,
+            },
+        });
+
+        if(!user) {
+            throw new Error("Usuário não foi achado.");
+        }
+
+        return user;
     }
 
     async getUser(id: number) {
