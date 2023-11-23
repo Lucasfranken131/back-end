@@ -9,7 +9,8 @@ export class ProfileService {
     constructor(private prisma: PrismaService) {}
 
     async getAllUsers() {
-        return await this.prisma.user.findMany();
+        const users = await this.prisma.user.findMany();
+        return users;
     }
 
     async getUsername(name: string) {

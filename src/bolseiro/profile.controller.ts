@@ -7,7 +7,7 @@ import { ProfileService } from './profile.service';
 export class ProfileController {
     constructor(private readonly profileService: ProfileService) {}
 
-    @Get(":name")
+    @Get("/findName/:name")
     getUsers(@Query ("name") name: string) {
         return this.profileService.getUsername(name);
     }
@@ -17,7 +17,7 @@ export class ProfileController {
         return this.profileService.getAllUsers();
     }
 
-    @Get("/findUser:id")
+    @Get("/findUser/:id")
     getUser(@Param('id') id: string) {
         return this.profileService.getUser(+id);
     }
@@ -27,12 +27,12 @@ export class ProfileController {
         return this.profileService.createUser(data);
     }
 
-    @Put("/updateUser:id")
+    @Put("/updateUser/:id")
     putUser(@Param("id") id: string , @Body() data: UpdateProfileDto) {
         return this.profileService.updateUser(+id, data);
     }
 
-    @Delete("/deleteUser:id")
+    @Delete("/deleteUser/:id")
     deleteUser(@Param("id") id: string) {
         return this.profileService.deleteUser(+id);
     }

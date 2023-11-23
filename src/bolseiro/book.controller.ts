@@ -7,7 +7,7 @@ import { BookService } from './book.service';
 export class BookController {
     constructor(private readonly bookService: BookService) {}
 
-    @Get(":name")
+    @Get("/findName/:name")
     getUsers(@Query ("name") name: string) {
         return this.bookService.getBookName(name);
     }
@@ -17,7 +17,7 @@ export class BookController {
         return this.bookService.getAllBooks();
     }
 
-    @Get("/findBook:id")
+    @Get("/findBook/:id")
     getBook(@Param("id") id: string) {
         return this.bookService.getBook(+id);
     }
@@ -27,12 +27,12 @@ export class BookController {
         return this.bookService.createBook(data);
     }
 
-    @Put("/updateBook:id")
+    @Put("/updateBook/:id")
     putBook(@Param("id") id: string, @Body() data: UpdateBookDto) {
         return this.bookService.updateBook(+id, data);
     }
 
-    @Delete("/deleteBook:id")
+    @Delete("/deleteBook/:id")
     deleteBook(@Param("id") id: string) {
         return this.bookService.deleteBook(+id);
     }

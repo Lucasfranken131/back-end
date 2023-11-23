@@ -9,7 +9,8 @@ export class BookService {
     constructor(private prisma: PrismaService) {}
 
     async getAllBooks() {
-        return await this.prisma.book.findMany();
+        const books = await this.prisma.book.findMany();
+        return books;
     }
 
     async getBookName(name: string) {
