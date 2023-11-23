@@ -12,7 +12,7 @@ export class BookController {
         return this.bookService.getBookName(name);
     }
 
-    @Get()
+    @Get("/findAll")
     getAllUsers() {
         return this.bookService.getAllBooks();
     }
