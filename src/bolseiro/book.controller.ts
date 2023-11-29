@@ -8,12 +8,12 @@ export class BookController {
     constructor(private readonly bookService: BookService) {}
 
     @Get("/findName")
-    getUsers(@Query ("name") name: string) {
-        return this.bookService.getBooks(name);
+    getBookName(@Query ("name") name: string) {
+        return this.bookService.getBookName(name);
     }
 
     @Get("/findAll")
-    getAllUsers() {
+    getAllBooks() {
         return this.bookService.getAllBooks();
     }
 

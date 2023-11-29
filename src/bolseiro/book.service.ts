@@ -16,7 +16,7 @@ export class BookService {
     async getBookName(name: string) {
         const book = await this.prisma.book.findMany({
             where: {
-                book_name: name,
+                book_name:{mode:'insensitive', contains:name},
             },
         })
 
