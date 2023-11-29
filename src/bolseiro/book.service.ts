@@ -14,26 +14,29 @@ export class BookService {
     }
 
     async getBookName(name: string) {
-        const book = await this.prisma.book.findFirst({
+        const book = await this.prisma.book.findMany({
             where: {
                 book_name: name,
             },
         })
 
         if(!book) {
-            throw new Error("");
+            throw new Error("Livro não encontrado");
         }
+
+        return book;
     }
 
     async getBooks(name: string) {
         if(name) {
-            return this.prisma.book.findMany({
+            const books = await this.prisma.book.findMany({
                 where: {
                     book_name: name,
                 },
+                
             });
+            return books;
         }
-        return this.prisma.book;
     }
 
     async getBook(id: number) {

@@ -7,9 +7,9 @@ import { BookService } from './book.service';
 export class BookController {
     constructor(private readonly bookService: BookService) {}
 
-    @Get("/findName/:name")
+    @Get("/findName")
     getUsers(@Query ("name") name: string) {
-        return this.bookService.getBookName(name);
+        return this.bookService.getBooks(name);
     }
 
     @Get("/findAll")
