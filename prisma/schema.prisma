@@ -18,6 +18,7 @@ model User {
   username      String    @unique   @db.VarChar(20)
   email         String    @unique   @db.VarChar(70)
   password      String    @db.VarChar(25)
+  isAdmin       Boolean
   books         Book[]     
 }
 
@@ -25,9 +26,11 @@ model Book {
   id_book       Int       @default(autoincrement()) @id
   book_picture  String
   book_name     String
+  book_description String 
   book_author   String
   book_date     String
   book_publisher  String
+  pdf_link      String
   user_booking  User[]    
 }
 

@@ -10,6 +10,7 @@ CREATE TABLE "User" (
     "username" VARCHAR(20) NOT NULL,
     "email" VARCHAR(70) NOT NULL,
     "password" VARCHAR(25) NOT NULL,
+    "isAdmin" BOOLEAN NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id_user")
 );
@@ -18,6 +19,12 @@ CREATE TABLE "User" (
 CREATE TABLE "Book" (
     "id_book" SERIAL NOT NULL,
     "book_picture" TEXT NOT NULL,
+    "book_name" TEXT NOT NULL,
+    "book_description" TEXT NOT NULL,
+    "book_author" TEXT NOT NULL,
+    "book_date" TEXT NOT NULL,
+    "book_publisher" TEXT NOT NULL,
+    "pdf_link" TEXT NOT NULL,
 
     CONSTRAINT "Book_pkey" PRIMARY KEY ("id_book")
 );
