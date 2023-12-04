@@ -8,8 +8,8 @@ export class ProfileController {
     constructor(private readonly profileService: ProfileService) {}
 
     @Get("/login")
-    getLogin(@Query("email") @Query("password") email: string, password: string) {
-        return this.profileService.login(email, password);
+    getLogin(@Query("username") @Query("password") username: string, password: string) {
+        return this.profileService.login(username, password);
     }
 
     @Get("/findName")
