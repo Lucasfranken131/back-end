@@ -7,6 +7,11 @@ import { ProfileService } from './profile.service';
 export class ProfileController {
     constructor(private readonly profileService: ProfileService) {}
 
+    @Get("/login")
+    getLogin(@Query("email") @Query("password") email: string, password: string) {
+        return this.profileService.login(email, password);
+    }
+
     @Get("/findName")
     getUsers(@Query ("name") name: string) {
         return this.profileService.getUsername(name);

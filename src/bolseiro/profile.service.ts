@@ -8,24 +8,34 @@ export class ProfileService {
 
     constructor(private prisma: PrismaService) {}
 
+    async login(username: string, password: string) {
+        const user = await this.prisma.user.findMany({
+            where: {
+                username: username,
+                password: password,
+            }
+        });
+        return user;
+    }
+
     async getAllUsers() {
         const users = await this.prisma.user.findMany();
         return users;
     }
 
     async getUsername(name: string) {
-        const user = await this.prisma.user.findFirst({
+        const user = await this.prisma.user.findMany({
             where: {
-                username: name,
+                username:name,
             },
-        });
+        })
 
         if(!user) {
-            throw new Error("Usuário não foi achado.");
+            throw new Error("Usuário não encontrado");
         }
 
         return user;
-    }
+    };
 
     async getUser(id: number) {
         const user = await this.prisma.user.findUnique({

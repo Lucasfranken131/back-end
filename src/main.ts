@@ -13,6 +13,12 @@ async function bootstrap() {
     credentials: true,
   });
 
+  app.enableCors({
+    origin: 'http://localhost:5555',
+    methods: 'GET, POST, PUT, DELETE',
+    credentials: true,
+  });
+
   await app.listen(3000);
 }
 bootstrap();
