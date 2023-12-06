@@ -2,6 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { CreateProfileDto } from "./dto/create-profile.dto";
 import { UpdateProfileDto } from "./dto/update-profile.dto";
 import { PrismaService } from "src/prisma.service";
+import * as bcrypt from 'bcrypt';
+
 
 @Injectable()
 export class ProfileService {
@@ -9,12 +11,17 @@ export class ProfileService {
     constructor(private prisma: PrismaService) {}
 
     async login(username: string, password: string) {
-        const user = await this.prisma.user.findMany({
+        const user = await this.prisma.user.findFirst({
             where: {
                 username: username,
-                password: password,
+                password: {equals: password},
             }
         });
+        if(!user) {
+            throw new Error("Usuário não encontrado");
+        }
+
+        
         return user;
     }
 
@@ -26,7 +33,7 @@ export class ProfileService {
     async getUsername(name: string) {
         const user = await this.prisma.user.findMany({
             where: {
-                username:name,
+                username: name,
             },
         })
 
@@ -35,7 +42,7 @@ export class ProfileService {
         }
 
         return user;
-    };
+    }
 
     async getUser(id: number) {
         const user = await this.prisma.user.findUnique({
